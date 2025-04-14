@@ -19,7 +19,7 @@ def transcribe_audio(url, audio_file_path):
     
    
     files = {
-        'file': (os.path.basename(audio_file_path), open(audio_file_path, 'rb'), 'audio/mp3')
+        'file': (os.path.basename(audio_file_path), open(audio_file_path, 'rb'), 'audio/mp3') // Change mp3 to whatever audio type you are using.
     }
     
  
@@ -39,7 +39,7 @@ def transcribe_audio(url, audio_file_path):
 if __name__ == "__main__":
    
     transcription_url = "http://34.71.182.226:8082/predict"
-    audio_file = "testt.mp3"
+    audio_file = "testt.mp3" // Replace with actual audio file name if it in the same directory, if not put the path to the audio file.
 
     print(f"Current working directory: {os.getcwd()}")
     print(f"Looking for audio file: {Path(audio_file).absolute()}")

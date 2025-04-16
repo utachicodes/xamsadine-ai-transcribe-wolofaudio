@@ -15,9 +15,6 @@ def transcribe_audio(url, audio_file_path):
     
  
     try:
-        print(f"Sending request to {url} with file {audio_file_path}...")
-        response = requests.post(url, files=files)
-        print(f"Response status code: {response.status_code}")
         response.raise_for_status()  
         return response.json()
     except requests.exceptions.RequestException as e:
@@ -28,13 +25,7 @@ def transcribe_audio(url, audio_file_path):
         files['file'][1].close()
 
 def save_transcription_to_file(result, output_file):
-    """
-    Save the transcription text to a file.
     
-    Args:
-        result (dict): The JSON response from the transcription service.
-        output_file (str): Path to the output text file.
-    """
     if not result or "predictions" not in result or not result["predictions"]:
         print("No transcription data to save.")
         return False
@@ -61,9 +52,6 @@ if __name__ == "__main__":
     audio_file = "testt.mp3"
     output_file = "transcription.txt"
     
-
-    print(f"Current working directory: {os.getcwd()}")
-    print(f"Looking for audio file: {Path(audio_file).absolute()}")
     
     if os.path.exists(audio_file):
         file_size = os.path.getsize(audio_file)
